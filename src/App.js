@@ -1,15 +1,15 @@
 import React from 'react'
 
-// import PreQuizForm from './components/PreQuizForm'
+import PreQuizForm from './components/PreQuizForm'
 // import Question from './components/Question'
-import Result from './components/Result'
+// import Result from './components/Result'
 
 function App() {
   return (
     <>
-      {/* <PreQuizForm /> */}
+      <PreQuizForm />
       {/* <Question /> */}
-      <Result />
+      {/* <Result /> */}
     </>
   );
 }

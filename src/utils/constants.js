@@ -149,10 +149,21 @@ export const Difficulty = [
     }
   ]
 
-export const Alphabet = [
-  'A',
-  'B',
-  'C',
-  'D'
-]
-
+ 
+  export const Type = [
+    {
+      key: '0',
+      text: 'Any Type',
+      value: '0'
+    },
+    {
+      key: 'multiple',
+      text: 'Multiple Choice',
+      value: 'multiple'
+    },
+    {
+      key: 'boolean',
+      text: 'True / False',
+      value: 'boolean'
+    }
+  ]

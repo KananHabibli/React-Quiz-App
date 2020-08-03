@@ -3,7 +3,8 @@
 }
 
 .prequiz-form{
-    width: 50%;
+    width: 60%;
+    min-width: 40%;
     margin: 80px auto;
     border: 1px solid rgb(84 200 255);
     border-radius: 6px;
