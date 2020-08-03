@@ -1,0 +1,13 @@
+*{
+    font-family: 'Recursive', sans-serif;
+}
+
+.question-box{
+    margin-top: 50px;
+}
+
+/* .answer-box{
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+} */

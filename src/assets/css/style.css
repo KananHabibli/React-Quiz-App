@@ -1,0 +1,11 @@
+*{
+    font-family: 'Recursive', sans-serif;
+}
+
+.prequiz-form{
+    width: 50%;
+    margin: 80px auto;
+    border: 1px solid rgb(84 200 255);
+    border-radius: 6px;
+    padding: 20px;
+}
