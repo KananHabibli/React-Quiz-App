@@ -3,6 +3,7 @@ import * as actionTypes from './actions'
 const initialState = {
     nickname: '',
     currentQuestion: {},
+    currentQuestionIndex: 1,
     questions: [],
     correct: 0,
     numbOfQuestions: 0,
@@ -24,7 +25,6 @@ function reducer(state = initialState, action){
                 questionActive: true
             }
         default:
-            console.log(state)
             return state
     }
 }
