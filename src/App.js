@@ -1,33 +1,7 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import PreQuizForm from './components/PreQuizForm'
-import Question from './components/Question'
-import Result from './components/Result'
+import React from 'react'
 
-class App extends Component {
-  render() {
-    let renderItem = null
-    if(this.props.formActive){
-      renderItem = <PreQuizForm />
-    } else if(this.props.questionActive){
-      renderItem =  <Question />
-    } else if(this.props.resultActive){
-      renderItem = <Result />
-    }
-    return (
-      <>
-        {renderItem}
-      </>
-    )
-  }
-}
+import Quiz from './container/Quiz'
 
-function mapStateToProps(state) {
-  return{
-    formActive: state.formActive,
-    questionActive: state.questionActive,
-    resultActive: state.resultActive
-  }
-}
+function App() {  return  <Quiz />  }
 
-export default connect(mapStateToProps)(App);
+export default App;
