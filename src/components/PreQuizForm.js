@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Container, Header, Button, Form, Icon, Dropdown } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+
 
 import '../assets/css/style.css'
 
 import { Categories, Difficulty, Type } from '../utils/constants'
+import { fetchQuestions } from '../reducers/dispatch'
 import NumbOfQuestions from '../utils/amount'
 import nameGenerator from '../utils/nameGenerator'
 
@@ -24,23 +27,9 @@ export class PreQuizForm extends Component {
         console.log(this.state)
     }
 
-    generateURLandFetch() {
+    generateUrl() {
         let {amount, category, difficulty, type} = this.state
-        console.log(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`)
-        axios.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`)
-            .then(res => {
-                console.log(res)
-                let questions = []
-                res.data.results.map(question => {
-                    let newQuestion = {
-                        ...question,
-                        answers: [question.correct_answer, ...question.incorrect_answers],
-                    }
-                    delete newQuestion.incorrect_answers
-                    questions.push(newQuestion)
-                })
-                console.log(questions)
-            })
+        return `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`
     }
 
     handleInputChange(event) {
@@ -110,11 +99,17 @@ export class PreQuizForm extends Component {
                         />
                     </Form.Field>
                     
-                    <Button fluid inverted color='blue' onClick={() => this.generateURLandFetch()} style={{display: 'block', margin: '0 auto'}}>Submit</Button>
+                    <Button fluid inverted color='blue' onClick={() => this.props.fetchQuestions(this.generateUrl())} style={{display: 'block', margin: '0 auto'}}>Submit</Button>
                 </Form>
             </Container>
         )
     }
 }
 
-export default PreQuizForm
+function mapDispatchToState(dispatch){
+    return {
+        fetchQuestions: url => dispatch(fetchQuestions(url))
+    }
+}
+
+export default connect(null, mapDispatchToState)(PreQuizForm)
