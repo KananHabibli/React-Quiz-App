@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { Container, Header, Button, Form, Icon, Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
@@ -16,10 +15,10 @@ export class PreQuizForm extends Component {
     constructor(props){
         super(props)
         this.state = {nickname: nameGenerator(), amount: '1', category: '0', difficulty: '0', type: '0'  }
-        this.handleCategoryChange = this.handleCategoryChange.bind(this)
+        this.handleCategoryChange   = this.handleCategoryChange.bind(this)
         this.handleDifficultyChange = this.handleDifficultyChange.bind(this)
-        this.handleAmountChange = this.handleAmountChange.bind(this)
-        this.handleTypeChange = this.handleTypeChange.bind(this)
+        this.handleAmountChange     = this.handleAmountChange.bind(this)
+        this.handleTypeChange       = this.handleTypeChange.bind(this)
         
     }
 
@@ -99,7 +98,7 @@ export class PreQuizForm extends Component {
                         />
                     </Form.Field>
                     
-                    <Button fluid inverted color='blue' onClick={() => this.props.fetchQuestions(this.generateUrl())} style={{display: 'block', margin: '0 auto'}}>Submit</Button>
+                    <Button fluid inverted color='blue' onClick={() => this.props.fetchQuestions(this.generateUrl(), this.state.nickname)} style={{display: 'block', margin: '0 auto'}}>Submit</Button>
                 </Form>
             </Container>
         )
@@ -108,7 +107,7 @@ export class PreQuizForm extends Component {
 
 function mapDispatchToState(dispatch){
     return {
-        fetchQuestions: url => dispatch(fetchQuestions(url))
+        fetchQuestions: (url, nickname) => dispatch(fetchQuestions(url, nickname))
     }
 }
 
