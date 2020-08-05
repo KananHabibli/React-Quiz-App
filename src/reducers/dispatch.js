@@ -4,6 +4,8 @@ import { AllHtmlEntities } from 'html-entities'
 
 
 import shuffleAnswers from '../utils/shuffleAnswers'
+import decodeAnswers from '../utils/shuffleAnswers'
+
 
 export const fetchQuestions = (url, nickname) => {
     return dispatch => {
@@ -13,7 +15,7 @@ export const fetchQuestions = (url, nickname) => {
                 res.data.results.map(question => {
                     let newQuestion = {
                         ...question,
-                        answers: shuffleAnswers([question.correct_answer, ...question.incorrect_answers]),
+                        answers: decodeAnswers(shuffleAnswers([question.correct_answer, ...question.incorrect_answers])),
                         question: AllHtmlEntities.decode(question.question)
                     }
                     delete newQuestion.incorrect_answers

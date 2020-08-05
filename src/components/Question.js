@@ -39,8 +39,11 @@ export class Question extends Component {
     render() {
         return (
             <Container className="question-box">
-            <Button color="teal" onClick={this.props.showState}>Current State</Button>
+                {/* <Button color="teal" onClick={this.props.showState}>Current State</Button> */}
                 <List style={{marginBottom: '40px'}}>
+                    <List.Item style={{marginBottom: '15px'}} icon='address card outline' content={
+                        `Nickname: ${this.props.nickname}`
+                    } />
                     <List.Item style={{marginBottom: '15px'}} icon='question circle outline' content={
                         `Question: ${this.props.currentQuestionIndex} out of ${this.props.numbOfQuestions}`
                     } />
@@ -89,7 +92,8 @@ function mapStateToProps(state){
     return {
         currentQuestion: state.currentQuestion,
         currentQuestionIndex: state.currentQuestionIndex,
-        numbOfQuestions: state.numbOfQuestions
+        numbOfQuestions: state.numbOfQuestions,
+        nickname: state.nickname
     }
 }
 
