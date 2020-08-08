@@ -67,6 +67,20 @@ function reducer(state = initialState, action){
                 correct: state.isLastCorrect && state.correct - 1 ,
                 userAnswers: [...state.userAnswers].splice(state.userAnswers.length - 1, 1)
             }
+        case actionTypes.RETAKE_QUIZ:
+            return {
+                ...state,
+                currentQuestion: state.questions[0],
+                currentQuestionIndex: 1,
+                previousAnswer: '',
+                userAnswers: [],
+                correct: 0,
+                isLastCorrect: false,
+                questionActive: true,
+                resultActive: false,
+                nextButtonText: state.numbOfQuestions === 1 ? 'See Your Result' : 'Next',
+                nextButtonColor: state.numbOfQuestions === 1 ? 'yellow' : 'blue'
+            }
         case actionTypes.REDIRECT_HOME:
             return {
                 ...state,

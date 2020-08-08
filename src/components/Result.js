@@ -13,6 +13,7 @@ import '../assets/css/Result.css'
 import calculateScore from '../utils/calculateScore'
 import axios from 'axios'
 import { firebaseURL } from '../config/config'
+import * as actionTypes from '../reducers/actions'
 export class Result extends Component {
 
     constructor(props){
@@ -49,7 +50,7 @@ export class Result extends Component {
                     <Icon name='save' />
                     Save to Firebase
                 </Button>
-                <Button icon color="green" size='large'>
+                <Button icon color="green" size='large' onClick={this.props.retakeQuiz}>
                     <Icon name='redo' />
                     Retake the Quiz
                 </Button>
@@ -134,4 +135,10 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(Result)
+function mapDispatchToProps(dispatch){
+    return {
+        retakeQuiz: () => dispatch({type: actionTypes.RETAKE_QUIZ})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Result)
