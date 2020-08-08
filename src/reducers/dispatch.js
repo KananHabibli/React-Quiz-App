@@ -1,6 +1,6 @@
 import * as actionTypes from './actions'
 import axios from 'axios'
-import { AllHtmlEntities } from 'html-entities'
+import he from 'he'
 
 
 import shuffleAnswers from '../utils/shuffleAnswers'
@@ -16,7 +16,7 @@ export const fetchQuestions = (url, nickname) => {
                     let newQuestion = {
                         ...question,
                         answers: decodeAnswers(shuffleAnswers([question.correct_answer, ...question.incorrect_answers])),
-                        question: AllHtmlEntities.decode(question.question)
+                        question: he.decode(question.question)
                     }
                     delete newQuestion.incorrect_answers
                     questions.push(newQuestion)
@@ -39,6 +39,15 @@ export const fetchNextQuestion =  choice => {
         console.log('fetchNextQuestion fired')
         dispatch({
             type: actionTypes.FETCH_NEXT,
+            payload: choice
+        })
+    }
+}
+
+export const fetchPreviousQuestion = choice => {
+    return dispatch => {
+        dispatch({
+            type: actionTypes.FETCH_PREVIOUS,
             payload: choice
         })
     }

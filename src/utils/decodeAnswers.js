@@ -1,7 +1,7 @@
-import { AllHtmlEntities } from 'html-entities'
+import he from 'he'
 
 const decodeAnswers = answers => {
-    answers.map(answer => AllHtmlEntities.decode(answer))
+    answers.map(answer => he.decode(answer))
 }
 
 export default decodeAnswers

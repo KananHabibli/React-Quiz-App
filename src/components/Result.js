@@ -1,19 +1,62 @@
 import React, { Component } from 'react'
-import { Statistic, Container, Segment, Table, Label, Icon } from 'semantic-ui-react'
+import { Statistic, 
+         Container, 
+         Segment, 
+         Table, 
+         Label, 
+         Icon, 
+         Button } from 'semantic-ui-react'
+
 import { connect } from 'react-redux'
 
 import '../assets/css/Result.css'
 import calculateScore from '../utils/calculateScore'
+import axios from 'axios'
+import { firebaseURL } from '../config/config'
 export class Result extends Component {
 
+    constructor(props){
+        super(props)
+
+        this.state = {
+            nickname: this.props.nickname,
+            totalQuestions: this.props.numbOfQuestions,
+            score: calculateScore(this.props.correct, this.props.numbOfQuestions),
+            correct: this.props.correct,
+            difficulty: this.props.difficulty,
+            category: this.props.category
+        }
+
+        this.saveButtonHandler = this.saveButtonHandler.bind(this)
+    }
+
+    saveButtonHandler() {
+
+        let result = {...this.state}
+
+        axios.post(`${firebaseURL}/result.json`, result)
+            .then(response => {
+                console.log('Result has been saved')
+                console.log(response)
+            })
+            .catch(e => console.log(e))
+    }
+
     render() {
-        let score = calculateScore(this.props.correct, this.props.numbOfQuestions)
         return (
             <Container>
+                <Button icon color="red" size='large' style={{marginRight: '15px'}} onClick={this.saveButtonHandler}>
+                    <Icon name='save' />
+                    Save to Firebase
+                </Button>
+                <Button icon color="green" size='large'>
+                    <Icon name='redo' />
+                    Retake the Quiz
+                </Button>
                 <Segment color="blue" raised>
                     <Label as='a' color='red' ribbon>
                         <Icon size="large" name='chart line' />
-                        Result
+                        {`Result of ${this.props.nickname}`}
                     </Label>
                     <Statistic.Group widths='four'>
                         <Statistic color="blue">
@@ -21,14 +64,14 @@ export class Result extends Component {
                             <Statistic.Label>Total Questions</Statistic.Label>
                         </Statistic>
                     
-                        <Statistic  color={score >= 60 ? 'green' : 'red'}>
+                        <Statistic  color={this.state.score >= 60 ? 'green' : 'red'}>
                             <Statistic.Value>
-                                {score}%
+                                {this.state.score}%
                             </Statistic.Value>
                             <Statistic.Label>Your Score</Statistic.Label>
                         </Statistic>
                     
-                        <Statistic color={score >= 60 ? 'green' : 'red'}>
+                        <Statistic color={this.state.score >= 60 ? 'green' : 'red'}>
                             <Statistic.Value>
                                 {this.props.correct}
                             </Statistic.Value>
@@ -84,7 +127,10 @@ function mapStateToProps(state){
         correct: state.correct,
         score: state.score,
         questions: state.questions,
-        userAnswers: state.userAnswers
+        userAnswers: state.userAnswers,
+        nickname: state.nickname,
+        difficulty: state.difficulty,
+        category: state.category
     }
 }
 

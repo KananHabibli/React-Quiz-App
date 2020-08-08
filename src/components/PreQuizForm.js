@@ -98,7 +98,7 @@ export class PreQuizForm extends Component {
                         />
                     </Form.Field>
                     
-                    <Button fluid inverted color='blue' onClick={() => this.props.fetchQuestions(this.generateUrl(), this.state.nickname)} style={{display: 'block', margin: '0 auto'}}>Submit</Button>
+                    <Button fluid inverted color='blue' onClick={() => this.props.fetchQuestions(this.generateUrl(), this.state.nickname)} style={{display: 'block', width: '50%', margin: '0 auto'}}>Submit</Button>
                 </Form>
             </Container>
         )
