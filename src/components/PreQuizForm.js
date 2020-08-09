@@ -3,8 +3,6 @@ import { Container, Header, Button, Form, Icon, Dropdown } from 'semantic-ui-rea
 import { connect } from 'react-redux'
 
 
-import '../assets/css/style.css'
-
 import { Categories, Difficulty, Type } from '../utils/constants'
 import { fetchQuestions } from '../reducers/dispatch'
 import NumbOfQuestions from '../utils/amount'
@@ -24,6 +22,7 @@ export class PreQuizForm extends Component {
 
     componentDidMount() {
         console.log(this.state)
+        console.log(window.localStorage.getItem('theme'))
     }
 
     generateUrl() {
@@ -52,12 +51,17 @@ export class PreQuizForm extends Component {
         this.setState({type: value})
     }
 
+    handleButtonColor() {
+        console.log('rendered')
+        return window.localStorage.getItem('theme') === 'light' ? 'blue' : null
+    }
+
     render() {
         return (
-            <Container>
+            <Container style={{color: '#fff'}}>
                 <Header as='h1' icon textAlign="center" style={{marginTop: '40px'}}>
-                    <Icon name='wordpress forms' />
-                    <Header.Content>Prequiz Form</Header.Content>
+                    <Icon name='wordpress forms' className=""/>
+                    <Header.Content >Prequiz Form</Header.Content>
                 </Header>
                 <Form className="prequiz-form">
                     <Form.Input fluid label='Nickname' onChange={this.handleChange} />
@@ -98,7 +102,7 @@ export class PreQuizForm extends Component {
                         />
                     </Form.Field>
                     
-                    <Button fluid inverted color='blue' onClick={() => this.props.fetchQuestions(this.generateUrl(), this.state.nickname)} style={{display: 'block', width: '50%', margin: '0 auto'}}>Submit</Button>
+                    <Button fluid className='submit-button' onClick={() => this.props.fetchQuestions(this.generateUrl(), this.state.nickname)}>Submit</Button>
                 </Form>
             </Container>
         )

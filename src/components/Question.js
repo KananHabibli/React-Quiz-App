@@ -10,7 +10,6 @@ import { List,
          Button,
          Icon } from 'semantic-ui-react'
 
-import '../assets/css/Question.css'
 
 import { fetchPreviousQuestion, fetchNextQuestion, showState } from '../reducers/dispatch'
 
@@ -47,21 +46,21 @@ export class Question extends Component {
             <Container className="question-box">
                 <Button color="teal" onClick={this.props.showState}>Current State</Button>
                 <List style={{marginBottom: '40px'}}>
-                    <List.Item style={{marginBottom: '15px'}} icon='address card outline' content={
+                    <List.Item className='quiz-info' icon='address card outline' content={
                         `Nickname: ${this.props.nickname}`
                     } />
-                    <List.Item style={{marginBottom: '15px'}} icon='question circle outline' content={
+                    <List.Item className='quiz-info' icon='question circle outline' content={
                         `Question: ${this.props.currentQuestionIndex} out of ${this.props.numbOfQuestions}`
                     } />
-                    <List.Item style={{marginBottom: '15px'}} icon='tags' content={`Category: ${this.props.currentQuestion.category}`} />
-                    <List.Item style={{marginBottom: '15px'}} icon='check circle outline' content={`Difficulty: ${this.props.currentQuestion.difficulty}`} />
+                    <List.Item className='quiz-info' icon='tags' content={`Category: ${this.props.currentQuestion.category}`} />
+                    <List.Item className='quiz-info' icon='check circle outline' content={`Difficulty: ${this.props.currentQuestion.difficulty}`} />
                 </List>
-                <Segment color='blue' raised> { this.props.currentQuestion.question} </Segment>
+                <Segment color='blue' className="quiz-question" raised> {this.props.currentQuestionIndex}. { this.props.currentQuestion.question} </Segment>
                 <Segment color="blue">
                     <Form>
                         {this.props.currentQuestion.answers.map((answer, index) => {
                             return (
-                                <Form.Field key={`${index}&${answer}`}>
+                                <Form.Field key={`${index}&${answer}`} className='quiz-answer'>
                                     <Radio
                                         label={answer}
                                         name='radioGroup'

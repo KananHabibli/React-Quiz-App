@@ -8,12 +8,12 @@ import { redirectHome } from '../reducers/dispatch'
 class Navbar extends Component {
     render() {
         return (
-            <Segment inverted color="blue" primary="true">
+            <Segment style={{backgroundColor: '#0f4c75'}}>
                 <Container>
                     <Menu compact text fluid widths={2}  inverted color="blue">
                         <Menu.Item header style={{color: '#fff'}} onClick={this.props.redirectHome}>Quiz App</Menu.Item>
                         <Menu.Item>
-                            Dark Mode <Checkbox toggle style={{marginLeft: '20px', backgroundColor: '#fff', borderRadius: '15px'}}/>
+                            Dark Mode <Checkbox toggle checked={this.props.checked} onClick={this.props.clickHandler} style={{marginLeft: '20px', backgroundColor: '#fff', borderRadius: '15px'}}/>
                         </Menu.Item>
                     </Menu>
                 </Container>

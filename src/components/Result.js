@@ -9,7 +9,7 @@ import { Statistic,
 
 import { connect } from 'react-redux'
 
-import '../assets/css/Result.css'
+
 import calculateScore from '../utils/calculateScore'
 import axios from 'axios'
 import { firebaseURL } from '../config/config'
@@ -47,11 +47,11 @@ export class Result extends Component {
         return (
             <Container>
                 <Button icon color="red" size='large' style={{marginRight: '15px'}} onClick={this.saveButtonHandler}>
-                    <Icon name='save' />
+                    <Icon name='save' style={{marginRight: '10px'}}/>
                     Save to Firebase
                 </Button>
                 <Button icon color="green" size='large' onClick={this.props.retakeQuiz}>
-                    <Icon name='redo' />
+                    <Icon name='redo' style={{marginRight: '10px'}}/>
                     Retake the Quiz
                 </Button>
                 <Segment color="blue" raised>

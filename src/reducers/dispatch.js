@@ -4,7 +4,7 @@ import he from 'he'
 
 
 import shuffleAnswers from '../utils/shuffleAnswers'
-import decodeAnswers from '../utils/shuffleAnswers'
+import decodeAnswers from '../utils/decodeAnswers'
 
 
 export const fetchQuestions = (url, nickname) => {
@@ -12,6 +12,7 @@ export const fetchQuestions = (url, nickname) => {
         axios.get(url)
             .then(res => {
                 let questions = []
+                console.log(res.data.results)
                 res.data.results.map(question => {
                     let newQuestion = {
                         ...question,

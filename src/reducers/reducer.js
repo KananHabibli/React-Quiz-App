@@ -23,15 +23,16 @@ const initialState = {
 function reducer(state = initialState, action){
     switch(action.type){
         case actionTypes.FETCH_QUESTIONS:
+            let data = action.payload.questions
             return {
                 ...state,
-                currentQuestion: action.payload.questions[0],
-                questions: action.payload.questions,
-                category: action.payload.questions[0].category,
-                difficulty: action.payload.questions[0].difficulty,
-                numbOfQuestions: action.payload.questions.length,
-                nextButtonText: action.payload.questions.length === 1 ? 'See Your Result' : 'Next',
-                nextButtonColor: action.payload.questions.length === 1 ? 'yellow' : 'blue',
+                currentQuestion: data[0],
+                questions: data,
+                category: data[0].category,
+                difficulty: data[0].difficulty,
+                numbOfQuestions: data.length,
+                nextButtonText: data.length === 1 ? 'See Your Result' : 'Next',
+                nextButtonColor: data.length === 1 ? 'yellow' : 'blue',
                 nickname: action.payload.nickname,
                 formActive: false,
                 questionActive: true
