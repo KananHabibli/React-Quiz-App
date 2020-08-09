@@ -29,9 +29,12 @@ export const GlobalStyles = createGlobalStyle`
         color: ${({ theme }) => theme.color} !important; 
     }
 
+    .ui.fluid.button {
+      color: ${({ theme }) => theme.submitButtonText};
+    }
+
     .submit-button{
         background-color: ${({ theme }) => theme.submitButtonColor} !important;
-        color: ${({ theme }) => theme.submitButtonText}; 
         display: block;
         width: 50% !important;
         margin: 0 auto !important;

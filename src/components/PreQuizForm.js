@@ -17,7 +17,7 @@ export class PreQuizForm extends Component {
         this.handleDifficultyChange = this.handleDifficultyChange.bind(this)
         this.handleAmountChange     = this.handleAmountChange.bind(this)
         this.handleTypeChange       = this.handleTypeChange.bind(this)
-        
+        this.handleChange           = this.handleChange.bind(this)
     }
 
     componentDidMount() {
@@ -30,9 +30,8 @@ export class PreQuizForm extends Component {
         return `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`
     }
 
-    handleInputChange(event) {
-        this.setState({nickname: event.target.value})
-        console.log(this.state)
+    handleChange(e) {
+        this.setState({nickname: e.target.value});
     }
 
     handleAmountChange(event, { value }){
@@ -41,6 +40,7 @@ export class PreQuizForm extends Component {
 
     handleCategoryChange(event, { value }){
         this.setState({category: value})
+        console.log('lmao')
     }
 
     handleDifficultyChange(event, { value }){

@@ -44,7 +44,6 @@ export class Question extends Component {
         }
         return (
             <Container className="question-box">
-                <Button color="teal" onClick={this.props.showState}>Current State</Button>
                 <List style={{marginBottom: '40px'}}>
                     <List.Item className='quiz-info' icon='address card outline' content={
                         `Nickname: ${this.props.nickname}`
