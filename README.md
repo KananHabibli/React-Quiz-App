@@ -32,9 +32,9 @@ Simple quiz app to check your general knowledge about 30+ topics. After choosing
 
 ## Some Pictures of the app
 
-* [Quiz on Light Mode] (public/images/quiz_light.png)
-* [Quiz on Dark Mode] (public/images/quiz_dark.png)
-* [Question on Light Mode] (public/images/question_light.png)
-* [Question on Dark Mode] (public/images/question_dark.png)
-* [Result on Light Mode] (public/images/result_light.png)
-* [Result on Dark Mode] (public/images/result_dark.png)
+* [Quiz on Light Mode](public/images/quiz_light.png)
+* [Quiz on Dark Mode](public/images/quiz_dark.png)
+* [Question on Light Mode](public/images/question_light.png)
+* [Question on Dark Mode](public/images/question_dark.png)
+* [Result on Light Mode](public/images/result_light.png)
+* [Result on Dark Mode](public/images/result_dark.png)
