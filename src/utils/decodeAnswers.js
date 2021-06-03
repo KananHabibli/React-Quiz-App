@@ -1,7 +1,5 @@
-import he from 'he'
+import he from "he";
 
-const decodeAnswers = answers => {
-    return answers.map(answer => he.decode(answer))
-}
+const decodeAnswers = (answers) => answers.map((answer) => he.decode(answer));
 
-export default decodeAnswers
+export default decodeAnswers;

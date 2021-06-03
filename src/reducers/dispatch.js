@@ -1,68 +1,70 @@
-import * as actionTypes from './actions'
-import axios from 'axios'
-import he from 'he'
+import * as actionTypes from "./actions";
+import axios from "axios";
+import he from "he";
 
-
-import shuffleAnswers from '../utils/shuffleAnswers'
-import decodeAnswers from '../utils/decodeAnswers'
-
+import shuffleAnswers from "../utils/shuffleAnswers";
+import decodeAnswers from "../utils/decodeAnswers";
 
 export const fetchQuestions = (url, nickname) => {
-    return dispatch => {
-        axios.get(url)
-            .then(res => {
-                let questions = []
-                console.log(res.data.results)
-                res.data.results.map(question => {
-                    let newQuestion = {
-                        ...question,
-                        answers: decodeAnswers(shuffleAnswers([question.correct_answer, ...question.incorrect_answers])),
-                        question: he.decode(question.question)
-                    }
-                    delete newQuestion.incorrect_answers
-                    questions.push(newQuestion)
-                })
-                console.log(questions)
-                dispatch({
-                    type: actionTypes.FETCH_QUESTIONS,
-                    payload: {
-                        questions,
-                        nickname
-                    }
-                })
-            })
-    }
-}
+  return (dispatch) => {
+    axios.get(url).then((res) => {
+      let questions = [];
 
+      // eslint-disable-next-line
+      res.data.results.map((question) => {
+        let newQuestion = {
+          ...question,
+          answers: decodeAnswers(
+            shuffleAnswers([
+              question.correct_answer,
+              ...question.incorrect_answers,
+            ])
+          ),
+          question: he.decode(question.question),
+        };
+        delete newQuestion.incorrect_answers;
+        questions.push(newQuestion);
+      });
 
-export const fetchNextQuestion =  choice => {
-    return dispatch => {
-        console.log('fetchNextQuestion fired')
-        dispatch({
-            type: actionTypes.FETCH_NEXT,
-            payload: choice
-        })
-    }
-}
+      dispatch({
+        type: actionTypes.FETCH_QUESTIONS,
+        payload: {
+          questions,
+          nickname,
+        },
+      });
+    });
+  };
+};
 
-export const fetchPreviousQuestion = choice => {
-    return dispatch => {
-        dispatch({
-            type: actionTypes.FETCH_PREVIOUS,
-            payload: choice
-        })
-    }
-}
+export const fetchNextQuestion = (choice) => {
+  return (dispatch) => {
+    dispatch({
+      type: actionTypes.FETCH_NEXT,
+      payload: choice,
+    });
+  };
+};
+
+export const fetchPreviousQuestion = (choice) => {
+  return (dispatch) => {
+    dispatch({
+      type: actionTypes.FETCH_PREVIOUS,
+      payload: choice,
+    });
+  };
+};
 
 export const showState = () => {
-    return dispatch => dispatch({
-        type: actionTypes.CURRENT_STATE
-    })
-}
+  return (dispatch) =>
+    dispatch({
+      type: actionTypes.CURRENT_STATE,
+    });
+};
 
 export const redirectHome = () => {
-    return dispatch => dispatch({
-        type: actionTypes.REDIRECT_HOME
-    })
-}
-
+  return (dispatch) =>
+    dispatch({
+      type: actionTypes.REDIRECT_HOME,
+    });
+};

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   *,
@@ -61,4 +61,4 @@ export const GlobalStyles = createGlobalStyle`
     width: 60%;
     margin: 60px auto;
   }
-`
+`;
